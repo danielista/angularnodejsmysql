@@ -12,7 +12,7 @@ export class ApiserviceService {
 
 
   // connect frontend to backend
-  apiUrl = 'http://localhost:3000/user';
+  apiUrl = 'http://localhost:3000/habit_tracker';
 
   // get all data
   getAllData(): Observable<any> {

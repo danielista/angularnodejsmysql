@@ -11,22 +11,28 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">FullName</th>
-                <th scope="col">Email</th>
-                <th scope="col">Mobile</th>
+                <th scope="col">User</th>
+                <th scope="col">Habit name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Starting date of the habit</th>
+                <th scope="col">Ending date of the habit</th>
+                <th scope="col">Done</th>
                 <th scope="col">Edits</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor='let us of readData'>
-                <th scope="row">{{us.id}}</th>
-                <td>{{us.fullname}}</td>
-                <td>{{us.email}}</td>
-                <td>{{us.mobile}}</td>
+            <tr *ngFor='let habitEntity of readData'>
+                <th scope="row">{{habitEntity.id}}</th>
+                <td>{{habitEntity.user}}</td>
+                <td>{{habitEntity.habit_name}}</td>
+                <td>{{habitEntity.habit_description}}</td>
+                <td>{{habitEntity.start_time | date}}</td>
+                <td>{{habitEntity.end_time | date}}</td>
+                <td>{{habitEntity.done}}</td>
                 <td>
-                    <button class="btn btn-danger btn-sm" (click)="deleteID(us.id)">Delete</button>
+                    <button class="btn btn-danger btn-sm" (click)="deleteID(habitEntity.id)">Delete</button>
                     &nbsp;
-                    <a [routerLink]="['/create', us.id]" class="btn btn.sm btn.success">UPDATE</a>
+                    <a [routerLink]="['/create', habitEntity.id]" class="btn btn-sm btn-success">UPDATE</a>
                 </td>
 
             </tr>

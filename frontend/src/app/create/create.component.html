@@ -11,26 +11,38 @@
     </div>
 
 
-    <form [formGroup]="userForm">
+    <form [formGroup]="habitsForm" (ngSubmit)="habitSubmit()">
         <div class="col-lg-4 mt-2">
-            <input type="text" class="form-control" formControlName="fullname" placeholder="enter full name">
+            <input type="text" class="form-control" formControlName="habit_name"
+                placeholder="enter the name of the habit">
         </div>
 
         <div class="col-lg-4 mt-2">
-            <input type="text" class="form-control" formControlName="email" placeholder="enter email">
+            <input type="text" class="form-control" formControlName="habit_description"
+                placeholder="describe your habit">
         </div>
 
         <div class="col-lg-4 mt-2">
-            <input type="text" class="form-control" formControlName="mobile" placeholder="enter mobile number">
+            <input type="date" class="form-control" formControlName="start_time" placeholder="enter starting time">
         </div>
 
-        <div class="col-lg-4 mt-2" *ngIf="!getparamid" (click)="userSubmit()">
+        <div class="col-lg-4 mt-2">
+            <input type="date" class="form-control" formControlName="end_time" placeholder="enter ending">
+        </div>
+
+
+        <div class="col-lg-4 mt-2">
+            <input type="text" class="form-control" formControlName="done" placeholder="DONE OR NOT YET">
+            <button type="radio">yes</button>
+        </div>
+
+        <div class="col-lg-4 mt-2" *ngIf="!getparamid" (click)="habitSubmit()">
             <button class="btn btn-primary btn-sm">
                 CREATE
             </button>
         </div>
 
-        <div class="col-lg-4 mt-2" *ngIf="getparamid" (click)="userUpdate()">
+        <div class="col-lg-4 mt-2" *ngIf="getparamid" (click)="habitUpdate()">
             <button class="btn btn-dark btn-sm">
                 UPDATE
             </button>

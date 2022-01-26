@@ -23,30 +23,33 @@ export class CreateComponent implements OnInit {
     if (this.getparamid) {
       this.service.getSingleData(this.getparamid).subscribe((res) => {
         console.log(res, 'res==>');
-        this.userForm.patchValue({
-          fullname: res.data[0].fullname,
-          email: res.data[0].email,
-          mobile: res.data[0].mobile
+        this.habitsForm.patchValue({
+          habit_name: res.data[0].habit_name,
+          habit_description: res.data[0].habit_description,
+          start_time: res.data[0].start_time,
+          end_time: res.data[0].start_time
         });
       });
     }
   }
 
-  userForm = new FormGroup({
-    'fullname': new FormControl('', Validators.required),
-    'email': new FormControl('', Validators.required),
-    'mobile': new FormControl('', Validators.required)
+  habitsForm = new FormGroup({
+    'habit_name': new FormControl('', Validators.required),
+    'habit_description': new FormControl('', Validators.required),
+    'start_time': new FormControl('', Validators.required),
+    'end_time': new FormControl('', Validators.required)
   });
 
 
-  // create new user
-  userSubmit() {
-    //console.log(this.userForm.value);
-    if (this.userForm.valid) {
-      console.log(this.userForm.value);
-      this.service.createData(this.userForm.value).subscribe((res) => {
+
+
+  // create new habit
+  habitSubmit() {
+    if (this.habitsForm.valid) {
+      console.log(this.habitsForm.value);
+      this.service.createData(this.habitsForm.value).subscribe((res) => {
         console.log(res, 'res===>');
-        this.userForm.reset();
+        this.habitsForm.reset();
         this.successmsg = res.message;
       })
 
@@ -57,12 +60,12 @@ export class CreateComponent implements OnInit {
   }
 
   //updatedata
-  userUpdate() {
-    console.log(this.userForm.value, 'updatedform');
+  habitUpdate() {
+    console.log(this.habitsForm.value, 'updatedform');
 
 
-    if (this.userForm.valid) {
-      this.service.updateData(this.userForm.value, this.getparamid).subscribe((res) => {
+    if (this.habitsForm.valid) {
+      this.service.updateData(this.habitsForm.value, this.getparamid).subscribe((res) => {
         console.log(res, 'resupdated');
         this.successmsg = res.message;
       });
